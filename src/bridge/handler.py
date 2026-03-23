@@ -127,8 +127,15 @@ class MessageHandler:
             from ..cdn.pic_decrypt import download_and_decrypt_buffer
             img = item.image_item
             media = img.media
-            aes_key = img.aeskey or (media.aes_key if media else "")
-            if not media or not media.encrypt_query_param or not aes_key:
+            if not media or not media.encrypt_query_param:
+                return "", ""
+            # img.aeskey is a hex string (32 hex chars = 16 bytes); convert to base64
+            # img.media.aes_key is already base64-encoded
+            if img.aeskey:
+                aes_key = base64.b64encode(bytes.fromhex(img.aeskey)).decode()
+            else:
+                aes_key = media.aes_key
+            if not aes_key:
                 return "", ""
             buf = await download_and_decrypt_buffer(
                 media.encrypt_query_param, aes_key, self.client.cdn_base_url, f"img:{user_id}"

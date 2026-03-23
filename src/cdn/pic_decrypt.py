@@ -1,4 +1,4 @@
-"""CDN media download and AES-128-ECB decryption."""
+"""CDN media download and AES-ECB decryption (supports AES-128/192/256)."""
 from __future__ import annotations
 import base64
 
@@ -14,10 +14,11 @@ def _parse_aes_key(aes_key_b64: str, label: str) -> bytes:
     if len(decoded) == 16:
         return decoded
     if len(decoded) == 32:
+        # base64 of hex-encoded key: decode hex to get 16 raw bytes
         text = decoded.decode("ascii", errors="ignore")
         if all(c in "0123456789abcdefABCDEF" for c in text):
             return bytes.fromhex(text)
-    raise ValueError(f"{label}: invalid AES key length {len(decoded)}")
+    raise ValueError(f"{label}: aes_key must decode to 16 raw bytes or 32-char hex string, got {len(decoded)} bytes")
 
 
 async def download_and_decrypt_buffer(
