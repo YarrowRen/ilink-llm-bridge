@@ -1,0 +1,65 @@
+# iLink 连接配置（由 login.py 写入 credentials.json，此处留空即可）
+ilink:
+  base_url: ""        # login.py 自动写入
+  cdn_base_url: "https://novac2c.cdn.weixin.qq.com/c2c"
+
+# LLM 提供商配置 — 修改 name 切换提供商
+provider:
+  name: openai        # openai | claude | gemini | dify | qwen | grok | seed
+  api_key: "sk-..."
+  model: "gpt-4o"
+  max_tokens: 2048   
+  base_url: ""     
+
+# Bot 行为
+bot:
+  system_prompt: "You are a helpful assistant."
+  max_history_length: 20   # 每用户保留的最大消息条数
+  chunk_size: 1000          # 超过此字数自动分段发送
+  allow_from: []            # ilink_user_id 白名单，空列表 = 允许所有人
+
+# 存储路径（相对于项目根目录）
+storage:
+  history_dir: "./data/history"
+  media_dir: "./data/media"
+
+log:
+  level: info   # debug | info | warn | error
+
+# ── 各提供商示例 ────────────────────────────────────────────
+# Claude:
+#   provider:
+#     name: claude
+#     api_key: "sk-ant-..."
+#     model: "claude-opus-4-5"
+#     max_tokens: 4096          # 必填
+
+# Gemini:
+#   provider:
+#     name: gemini
+#     api_key: "AIza..."
+#     model: "gemini-2.0-flash"
+
+# Dify:
+#   provider:
+#     name: dify
+#     api_key: "app-..."
+#     base_url: "https://api.dify.ai/v1"
+
+# Qwen:
+#   provider:
+#     name: qwen
+#     api_key: "sk-..."
+#     model: "qwen-plus"
+
+# Grok:
+#   provider:
+#     name: grok
+#     api_key: "xai-..."
+#     model: "grok-3"
+
+# Seed (ByteDance Doubao):
+#   provider:
+#     name: seed
+#     api_key: "..."
+#     model: "doubao-pro-32k"

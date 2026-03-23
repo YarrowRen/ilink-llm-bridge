@@ -1,0 +1,10 @@
+config.yaml
+credentials.json
+CLAUDE.md
+data/
+__pycache__/
+*.pyc
+.venv/
+dist/
+*.egg-info/
+.pytest_cache/
