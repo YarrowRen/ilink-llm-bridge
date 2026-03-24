@@ -280,7 +280,7 @@ aeskey?: string;
 ### 4.2 项目结构
 
 ```
-ilink-llm-bridge/
+wechat-llm-bridge/
 ├── login.py                 # 独立登录脚本
 ├── config.yaml              # 用户配置
 ├── src/

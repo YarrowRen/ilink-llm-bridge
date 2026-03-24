@@ -27,7 +27,7 @@
 ### 安装依赖
 
 ```bash
-cd ilink-llm-bridge
+cd wechat-llm-bridge
 python -m venv .venv
 source .venv/bin/activate  # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
@@ -103,7 +103,7 @@ log:
 ## 项目结构
 
 ```
-ilink-llm-bridge/
+wechat-llm-bridge/
 ├── login.py                     # 微信扫码登录脚本
 ├── config.example.yaml          # 配置模板
 ├── config.yaml                  # 实际配置（gitignore）
